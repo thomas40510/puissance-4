@@ -6,8 +6,8 @@ plateau = []
 plateau.append(["/"," " ,"A","B","C","D","E","F","G"])
 for i in range(6):
     plateau.append([i+1,"|",".",".",".",".",".",".","."])
-    
-# Affichage d'une matrice 
+
+# Affichage d'une matrice
 def Affiche(M):
     nligne=len(M)
     ncolonne=len(M[0])
@@ -18,22 +18,26 @@ def Affiche(M):
 
 
 Affiche(plateau)
-      
+
 #c'est au joueur de jouer
 def playerTurn():
     p = input("Où voulez-vous jouer ? ")
-    a = plateau[0].index(p[0])
-    print("indice", plateau[0].index(p[0]))
-    n = 0
-    print(p[1])
     try :
+        a = plateau[0].index(p[0])
+        print("indice", plateau[0].index(p[0]))
+        n = 0
+        print(p[1])
         while(int(p[1])!=plateau[n][0]):
             n+=1
         plateau[n][a] = "X"
     except IndexError:
         print("erreur d'index")
+        input("pressez une touche pour continuer...")
         playerTurn()
+    except ValueError:
+        print("erreur d'index")
+        input("pressez une touche pour continuer...")
+        playerTurn()
+
 playerTurn()
-
 Affiche(plateau)
-
